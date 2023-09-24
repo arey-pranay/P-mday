@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.landingPage {
+  overflow: hidden;
+}
+
+.navbar-shadow {
+  box-shadow: 0 2px 4px rgba(0, 0, 255, 0.2); /* Adjust the color and blur as needed */
+}
+
+.lower-section {
+  height: 0; /* Initially hidden */
+  overflow: hidden; /* Hide overflow content */
+  transition: height 0.5s ease-in-out; /* Transition animation */
+}
