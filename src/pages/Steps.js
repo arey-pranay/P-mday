@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import StepsImg from "../assets/stepsfinal2.png";
 import VanillaTilt from "vanilla-tilt";
+import { AnimationOnScroll } from "react-animation-on-scroll";
+import { signInWithGoogle } from "../Firebase";
 
 function Landinging() {
   // Find the image element you want to apply the effect to
@@ -34,23 +36,30 @@ function Landinging() {
     // Clean up event listeners when the component unmounts
     return () => {
       imageRef.current.removeEventListener("mouseenter", handleMouseEnter);
-      imageRef.current.removeEventListener("mouseleave", handleMouseLeave);
+      // imageRef.current.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
   return (
-    <div className="bg-purple-900 h-100vh pt-10 pb-5">
+    <div className="bg-purple-900 h-100vh pt-10 pb-5 ">
       {/* <!-- Start block --> */}
-      <section className=" dark:bg-gray-900">
-        <div className="grid max-w-screen-xl px-4 pt-16 pb-0 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-16">
+      <section className=" dark:bg-gray-900 py-24 md:py-0">
+        <div className="grid max-w-screen-xl px-4 pt-4 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-16">
           <div className="lg:col-span-5 lg:flex ml-20">
             {" "}
             {/* Changed the col-span to 5 */}
-            <img
-              src={StepsImg}
-              alt="hero mage"
-              className="tilt-image hidden md:block"
-              ref={imageRef}
-            />
+            <AnimationOnScroll
+              initiallyVisible={false}
+              animateIn="animate__bounceInLeft"
+              animateOut="animate__bounceOutLeft"
+            >
+              <img
+                src={StepsImg}
+                alt="hero mage"
+                className="tilt-image hidden md:block mt-12"
+                style={{ transform: "scale(1.2)" }}
+                ref={imageRef}
+              />
+            </AnimationOnScroll>
           </div>
 
           <div className="mr-auto place-self-center lg:col-span-7 px-6">
@@ -79,10 +88,13 @@ function Landinging() {
                 </li>
               </ul>
             </p>
-            <button className="mx-16 md:mx-40 mt-8 md:mt-6">
+            <button
+              onClick={signInWithGoogle}
+              className="mx-16 md:mx-40 mt-8 md:mt-6"
+            >
               <a
                 href="#"
-                className=" text-purple-900 bg-white hover:bg-cyan-200 hover:text-gray-500 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-10 py-2 lg:py-3 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-900 focus:outline-none dark:focus:ring-purple-800"
+                className=" text-purple-900 bg-white hover:bg-cyan-200 hover:text-gray-500 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-10 py-3 lg:py-4 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-900 focus:outline-none dark:focus:ring-purple-800"
               >
                 Let's Get Started !
               </a>

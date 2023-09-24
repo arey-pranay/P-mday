@@ -7,7 +7,11 @@ const Footer = ({ intensity }) => {
         intensity > 500 ? `text-white` : `text-black`
       }`}
     >
-      A Pranay Parikh Product
+      A &nbsp;{" "}
+      <b>
+        <a href="https://www.github.com">Pranay Parikh </a>
+      </b>{" "}
+      &nbsp; Product
     </div>
   );
 };

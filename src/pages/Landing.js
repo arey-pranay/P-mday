@@ -2,10 +2,19 @@ import React, { useEffect, useRef } from "react";
 import HeroImg from "../assets/hero.png";
 import NavBar from "../components/NavBar";
 import VanillaTilt from "vanilla-tilt";
+import { AnimationOnScroll } from "react-animation-on-scroll";
 
 function Land() {
   // Find the image element you want to apply the effect to
   const imageRef = useRef(null);
+
+  const goDownYa = () => {
+    const upValue = window.innerWidth > 500 ? 650 : 1200;
+    window.scrollTo({
+      top: `${upValue}`,
+      behavior: "smooth",
+    });
+  };
 
   useEffect(() => {
     let tilt = null; // Variable to store the Vanilla Tilt instance
@@ -39,10 +48,10 @@ function Land() {
     };
   }, []);
   return (
-    <div>
+    <div className="min-h-screen">
       <NavBar />
       {/* <!-- Start block --> */}
-      <section className="bg-white dark:bg-gray-900 landingPage">
+      <section className="bg-white dark:bg-gray-900 landingPage py-24 md:py-0">
         <div className="grid max-w-screen-xl px-4 pb-0 mx-auto lg:gap-8 xl:gap-0 lg:pb-16 lg:grid-cols-12 ">
           <div className="mr-auto place-self-center lg:col-span-7 px-6">
             <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
@@ -66,10 +75,10 @@ function Land() {
                 </li>
               </ul>
             </p>
-            <button className="mx-16 md:mx-40 mt-8 md:mt-0">
+            <button onClick={goDownYa} className="mx-16 md:mx-40 mt-8 md:mt-0">
               <a
                 href="#"
-                className=" text-white bg-purple-900 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-10 py-2 lg:py-3 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-900 focus:outline-none dark:focus:ring-purple-800"
+                className=" text-white bg-purple-900 hover:bg-cyan-950 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-10 py-3 lg:py-3.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-900 focus:outline-none dark:focus:ring-purple-800"
               >
                 Solve this problem
               </a>
@@ -78,12 +87,19 @@ function Land() {
           </div>
 
           <div className="mt-10 lg:mt-0 lg:col-span-5 lg:flex">
-            <img
-              src={HeroImg}
-              alt="hero mage"
-              className="tilt-image hidden md:block"
-              ref={imageRef}
-            />
+            <AnimationOnScroll
+              initiallyVisible={true}
+              animateIn="animate__bounceInRight"
+              animateOut="animate__bounceOutRight"
+            >
+              <img
+                src={HeroImg}
+                alt="hero mage"
+                style={{ transform: "scale(0.8)" }}
+                className="tilt-image hidden md:block"
+                ref={imageRef}
+              />
+            </AnimationOnScroll>
           </div>
         </div>
       </section>
