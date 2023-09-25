@@ -9,7 +9,7 @@ const Footer = ({ intensity }) => {
     >
       A &nbsp;{" "}
       <b>
-        <a href="https://www.github.com">Pranay Parikh </a>
+        <a href="httpszz://www.github.com">Pranay Parikh </a>
       </b>{" "}
       &nbsp; Product
     </div>

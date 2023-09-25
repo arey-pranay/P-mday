@@ -1,8 +1,53 @@
 import React from "react";
 import Logo from "../assets/logo2.png";
-import { signInWithGoogle } from "../Firebase";
+import { app } from "../Firebase/Firebase";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import { useEffect, useState } from "react";
+
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
 const NavBar = () => {
+  const signInGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then(() => {
+        console.log("logged in");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const signOutGoogle = () => {
+    signOut(auth)
+      .then(() => {
+        setUser(null);
+        console.log("logged out");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        console.log(user);
+      } else {
+        console.log("error");
+        setUser(null);
+      }
+    });
+  }, []);
+
   return (
     <div>
       <header
@@ -17,16 +62,22 @@ const NavBar = () => {
             <a href="#" className="flex items-center">
               <img src={Logo} className="mr-3 h-12" alt="Landwind Logo" />
             </a>
-            <span className="self-center font-mono hidden md:block ml-6 text-4xl text-purple-700  font-bold whitespace-nowrap dark:text-white">
-              Play-My-Day
+            <span
+              className={`self-center font-mono hidden md:block ml-6 text-4xl ${
+                user ? "text-cyan-600" : "text-purple-900"
+              } font-bold whitespace-nowrap dark:text-white`}
+            >
+              {user
+                ? "Hey " + user.displayName.split(" ")[0] + " !"
+                : "Play-My-Day"}
             </span>
             <div className="flex items-center">
-              <button onClick={signInWithGoogle}>
+              <button onClick={user ? signOutGoogle : signInGoogle}>
                 <a
                   href="#"
-                  className="text-white bg-purple-900 hover:bg-cyan-500 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-10 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-900 focus:outline-none dark:focus:ring-purple-800"
+                  className="text-white bg-purple-900 hover:bg-cyan-500 font-medium rounded-lg text-sm px-4 lg:px-10 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-900 focus:outline-none dark:focus:ring-purple-800"
                 >
-                  Log In
+                  Log {user ? "Out" : "In"}
                 </a>
               </button>
             </div>

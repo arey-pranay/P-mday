@@ -2,9 +2,53 @@ import React, { useEffect, useRef } from "react";
 import StepsImg from "../assets/stepsfinal2.png";
 import VanillaTilt from "vanilla-tilt";
 import { AnimationOnScroll } from "react-animation-on-scroll";
-import { signInWithGoogle } from "../Firebase";
+import { app } from "../Firebase/Firebase";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import { useState } from "react";
+
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
 function Landinging() {
+  const signInGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then(() => {
+        console.log("logged in");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const signOutGoogle = () => {
+    signOut(auth)
+      .then(() => {
+        setUser(null);
+        console.log("logged out");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        console.log(user);
+      } else {
+        console.log("error");
+        setUser(null);
+      }
+    });
+  }, []);
   // Find the image element you want to apply the effect to
   const imageRef = useRef(null);
 
@@ -35,7 +79,7 @@ function Landinging() {
 
     // Clean up event listeners when the component unmounts
     return () => {
-      imageRef.current.removeEventListener("mouseenter", handleMouseEnter);
+      // imageRef.current.removeEventListener("mouseenter", handleMouseEnter);
       // imageRef.current.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
@@ -89,7 +133,7 @@ function Landinging() {
               </ul>
             </p>
             <button
-              onClick={signInWithGoogle}
+              onClick={signInGoogle}
               className="mx-16 md:mx-40 mt-8 md:mt-6"
             >
               <a
