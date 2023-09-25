@@ -21,12 +21,12 @@ container {
 
 .item {
   position: absolute;
-  width: 200px;
+  width: 250px;
   margin-left: 300px;
   margin-right: 300px;
   height: 320px;
   text-align: justify;
-  background-color: #7e57c2;
+  background-color: #581c87;
   border-radius: 10px;
   padding: 20px;
   transition: 0.5s;
@@ -47,7 +47,7 @@ container {
 #prev {
   position: absolute;
   top: 25%;
-  color: #4a148c;
+  color: #06b6d4;
   background-color: transparent;
   border: none;
   font-size: 80px;
@@ -66,4 +66,13 @@ container {
 button:active {
   transform: scale(0.9);
   transition: transform 0.2s;
+}
+@media (max-width: 767px) {
+  .slider {
+    margin-left: -180px;
+  }
+  .item {
+    width: 200px;
+    margin-left: 25px;
+  }
 }

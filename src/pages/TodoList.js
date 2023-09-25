@@ -36,7 +36,7 @@ const TodoList = (user) => {
         }
       }
       setTasks([...newTasks]);
-      console.log(tasks);
+      console.log("The following " + tasks);
 
       // setTasks([...tasks, ...newTasks]);
       // Update the tasks state with all retrieved tasks

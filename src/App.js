@@ -41,10 +41,10 @@ function App() {
           {/* <RealTimeDB /> */}
           <ParticleComponent />
           <TodoList user={user} />
-          <PlayCards />
-          <Footer bgcolor="cyan-50" fontcolor="black" />
+          <PlayCards user={user} />
+          {/* <Footer bgcolor="cyan-50" fontcolor="black" /> */}
 
-          {/* <Footer bgcolor="purple-900" fontcolor="white" /> */}
+          <Footer bgcolor="purple-900" fontcolor="white" />
         </>
       ) : (
         /* Render components for non-authenticated user */

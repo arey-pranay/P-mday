@@ -2,24 +2,21 @@ import React, { useRef, useEffect, useState } from "react";
 import "./SlideStyles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
-import {
-  getDatabase,
-  ref,
-  set,
-  get,
-  child,
-  onValue,
-  remove,
-} from "firebase/database";
+import { getDatabase, ref, get, child } from "firebase/database";
 import { app } from "../Firebase/Firebase";
 const Slider = (user) => {
   const sliderRef = useRef(null);
   const [active, setActive] = useState(0);
 
   const handleNextClick = () => {
-    setActive((prevActive) =>
-      prevActive + 1 < items.length ? prevActive + 1 : prevActive
-    );
+    try {
+      setActive((prevActive) =>
+        prevActive + 1 < items.length ? prevActive + 1 : prevActive
+      );
+    } catch (error) {
+      alert(error);
+    }
+
     // loadShow();
   };
 
@@ -74,7 +71,7 @@ const Slider = (user) => {
       prevButton.removeEventListener("click", handlePrevClick);
     };
   }, [active]);
-  const [itemz, setItemz] = useState([]);
+  const [itemz, setItemz] = useState([{ name: "No No-Name", duration: "0" }]);
   const items = [
     {
       title: "Wake Up",
@@ -155,9 +152,12 @@ const Slider = (user) => {
     // Add more slides as needed
   ];
   const invalidCharacterRegex = /[.$[\]]/g;
-  // const rawUsername = user.email.split("@")[0];
+  // console.log(user);
+  const rawUsername = user.user.user.email.split("@")[0];
+  const username = rawUsername.replace(invalidCharacterRegex, "-");
+  // console.log(username);
   // const username = rawUsername.replace(invalidCharacterRegex, "-");
-  const username = "pranayparikh2004";
+  // const username = "pranayparikh2004";
   const db = getDatabase(app);
   get(child(ref(db), `user/${username}`)).then((snapshot) => {
     const userData = snapshot.val();
@@ -171,28 +171,33 @@ const Slider = (user) => {
           name: taskData[0],
           duration: taskData[1],
         };
+
         newTasks.push(newTask);
+        // console.log(newTask);
       }
     }
-    setItemz([newTasks]);
-    console.log("Hey");
-    // console.log(items);
+    setItemz([newTasks][0]);
+    // console.log("Hey");
     // setTasks([...tasks, ...newTasks]);
     // Update the tasks state with all retrieved tasks
   });
+  console.log(itemz);
+
   return (
     <div className="-z-10 ">
-      <div className="slider" ref={sliderRef}>
-        {items.map((item, index) => (
+      <div className="slider text-center" ref={sliderRef}>
+        {itemz.map((item, index) => (
           <div
-            className={`item ${index === active ? "active" : ""}`}
+            className={`item ${index === active ? "active" : ""} text-right`}
             key={index}
           >
-            <h1 className="text-4xl mt-10 font-sans text-cyan-100 font-extrabold">
-              {item.title}
+            <h1 className="text-3xl md:text-4xl mt-10 mx-4 font-sans text-cyan-50 font-extrabold">
+              {item.name.split(" ")[1]}
             </h1>
-            <div className="mt-12  text-6xl text-white">{item.content}</div>
-            <button className="mt-8 ml-6 text-white bg-red-500 rounded-2xl px-7 py-4">
+            <div className="mt-12 ml-5 text-3xl md:text-6xl text-white">
+              {item.duration}:00
+            </div>
+            <button className="mt-8 ml-6 text-white bg-cyan-500 rounded-2xl px-7 py-4">
               <FontAwesomeIcon icon={faPlay} /> /{" "}
               <FontAwesomeIcon icon={faPause} />
             </button>

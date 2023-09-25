@@ -129,7 +129,17 @@ const ParticleComponent = () => {
       behavior: "smooth",
     });
   };
+  const scrollDown = () => {
+    // Replace 'your-element-id' with the ID of the element you want to scroll to
+    const element = document.getElementById("PlayCards");
 
+    if (element) {
+      // Scroll to the element's position
+      element.scrollIntoView({
+        behavior: "smooth", // Adds smooth scrolling animation
+      });
+    }
+  };
   return (
     <>
       <div
@@ -173,7 +183,7 @@ const ParticleComponent = () => {
                   <h1 className="hidden md:block">Create a Schedule</h1>
                 </div>
               </button>
-              <button className="mt-8 md:mt-6">
+              <button onClick={scrollDown} className="mt-8 md:mt-6">
                 <div className="flex gap-5 justify-between items-center text-lg text-white bg-cyan-400 border-white border-8 hover:bg-cyan-200 hover:text-cyan-900 font-medium rounded-3xl text-sm px-4 lg:px-10 py-3 lg:py-4 sm:mr-2 lg:mr-0">
                   Play My Day
                   <FontAwesomeIcon icon={faPlay} className="text-3xl" />{" "}
