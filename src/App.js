@@ -42,9 +42,10 @@ function App() {
       ) : (
         /* Render components for non-authenticated user */
         <>
-          <Landing /> \ <Steps user={user} /> <Footer intensity={100} />
+          <Landing /> \ <Steps user={user} />
         </>
       )}
+      <Footer intensity={100} />
     </div>
   );
 }

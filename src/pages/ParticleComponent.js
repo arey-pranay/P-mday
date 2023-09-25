@@ -130,7 +130,6 @@ const ParticleComponent = () => {
         style={{
           position: "absolute",
           width: "100%",
-          height: "90%",
           backgroundColor: "#680c9c",
           backgroundImage: 'url("")',
           backgroundRepeat: "no-repeat",
@@ -138,13 +137,14 @@ const ParticleComponent = () => {
           backgroundPosition: "50% 50%",
           zIndex: -1,
         }}
+        className="h-3/4 md:h-5/6"
       >
         {/* Content inside the particle.js container */}
       </div>
       {/* <!-- Start block --> */}
-      <section className=" dark:bg-gray-900 py-24 md:py-2">
-        <div className="grid max-w-screen-xl px-4 pt-4 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-8">
-          <div className="lg:col-span-5 lg:flex mr-16 pb-16 hidden md:block">
+      <section className=" dark:bg-gray-900 py-24 md:py-0  ">
+        <div className="grid max-w-screen-xl px-4 pt-4 pb-0 mx-auto lg:gap-5 xl:gap-0 lg:py-0 lg:grid-cols-12 lg:pt-8">
+          <div className="lg:col-span-5 lg:flex mr-16 pb-0 hidden md:block">
             {" "}
             {/* Changed the col-span to 5 */}
             <img src={BunnyImage} alt="" ref={tiltRef} />
@@ -173,7 +173,7 @@ const ParticleComponent = () => {
                 </div>
               </button>
             </div>
-            <p className="max-w-2xl md:pr-16 pl-0.5 mb-6 font-mono text-white lg:mb-8 md:text-lg lg:text-lg dark:text-gray-400">
+            <p className="max-w-2xl md:pr-16 pl-0.5 mb-0 font-mono text-white lg:mb-0 md:text-lg lg:text-lg dark:text-gray-400">
               <br />
               As{" "}
               <a
