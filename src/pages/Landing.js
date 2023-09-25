@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import HeroImg from "../assets/hero.png";
-import NavBar from "../components/NavBar";
+// import NavBar from "../components/NavBar";
 import VanillaTilt from "vanilla-tilt";
 import { AnimationOnScroll } from "react-animation-on-scroll";
 
@@ -43,15 +43,15 @@ function Land() {
 
     // Clean up event listeners when the component unmounts
     return () => {
-      imageRef.current.removeEventListener("mouseenter", handleMouseEnter);
-      imageRef.current.removeEventListener("mouseleave", handleMouseLeave);
+      // imageRef.current.removeEventListener("mouseenter", handleMouseEnter);
+      // imageRef.current.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
   return (
-    <div className="min-h-screen">
-      <NavBar />
+    <div className="min-h-80vh">
+      {/* <NavBar /> */}
       {/* <!-- Start block --> */}
-      <section className="bg-white dark:bg-gray-900 landingPage py-24 md:py-0">
+      <section className="bg-white dark:bg-gray-900 landingPage mt-12 py-24 md:py-0">
         <div className="grid max-w-screen-xl px-4 pb-0 mx-auto lg:gap-8 xl:gap-0 lg:pb-16 lg:grid-cols-12 ">
           <div className="mr-auto place-self-center lg:col-span-7 px-6">
             <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">

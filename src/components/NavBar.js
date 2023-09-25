@@ -51,7 +51,7 @@ const NavBar = () => {
   return (
     <div>
       <header
-        className="w-full border-green-900 px-5 py-4 mb-12 navbar-shadow"
+        className="w-full border-green-900 px-5 py-4 mb-0 navbar-shadow"
         style={{
           boxShadow:
             "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
@@ -63,7 +63,7 @@ const NavBar = () => {
               <img src={Logo} className="mr-3 h-12" alt="Landwind Logo" />
             </a>
             <span
-              className={`self-center font-mono hidden md:block ml-6 text-4xl ${
+              className={`self-center font-mono text-lg md:text-4xl ml-0 md:ml-6  ${
                 user ? "text-cyan-600" : "text-purple-900"
               } font-bold whitespace-nowrap dark:text-white`}
             >

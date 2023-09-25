@@ -17,25 +17,24 @@ const provider = new GoogleAuthProvider();
 
 function Landinging() {
   const signInGoogle = () => {
-    signInWithPopup(auth, provider)
-      .then(() => {
-        console.log("logged in");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    signInWithPopup(auth, provider).then(() => {
+      console.log("logged in");
+    });
+    // setUser().catch((error) => {
+    //   console.log("error");
+    // });
   };
 
-  const signOutGoogle = () => {
-    signOut(auth)
-      .then(() => {
-        setUser(null);
-        console.log("logged out");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const signOutGoogle = () => {
+  //   signOut(auth)
+  //     .then(() => {
+  //       setUser(null);
+  //       console.log("logged out");
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   const [user, setUser] = useState(null);
   useEffect(() => {
@@ -109,8 +108,8 @@ function Landinging() {
           <div className="mr-auto place-self-center lg:col-span-7 px-6">
             {" "}
             {/* Changed the col-span to 7 */}
-            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl text-white">
-              Here is how !
+            <h1 className="max-w-2xl mb-16 md:mb-4 text-3xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl text-white">
+              This is how it works!
             </h1>
             <p className="max-w-2xl md:pr-16 pl-0.5 mb-6 font-mono text-cyan-200 lg:mb-8 md:text-lg lg:text-lg dark:text-gray-400">
               <br />
