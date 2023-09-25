@@ -1,15 +1,14 @@
 import React from "react";
 
-const Footer = ({ intensity }) => {
+const Footer = ({ bgcolor, fontcolor }) => {
   return (
     <div
-      className={`flex mt-full items-center justify-center p-2 bg-cyan-50 ${
-        intensity > 500 ? `text-white` : `text-black`
+      className={`flex mt-full items-center justify-center p-2 bg-${bgcolor} text-${fontcolor}
       }`}
     >
       A &nbsp;{" "}
       <b>
-        <a href="httpszz://www.github.com">Pranay Parikh </a>
+        <a href="https://www.github.com">Pranay Parikh </a>
       </b>{" "}
       &nbsp; Product
     </div>

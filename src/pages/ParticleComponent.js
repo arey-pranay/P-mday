@@ -122,6 +122,13 @@ const ParticleComponent = () => {
       // tiltRef.current.vanillaTilt.destroy(); // Destroy the tilt instance
     };
   }, []);
+  const goDownYa = () => {
+    const upValue = window.innerWidth > 500 ? 650 : 1200;
+    window.scrollTo({
+      top: `${upValue}`,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
@@ -137,7 +144,7 @@ const ParticleComponent = () => {
           backgroundPosition: "50% 50%",
           zIndex: -1,
         }}
-        className="h-3/4 md:h-5/6"
+        className="h-3/4 md:h-screen"
       >
         {/* Content inside the particle.js container */}
       </div>
@@ -160,7 +167,7 @@ const ParticleComponent = () => {
               Sorry for that bun, I mean, pun.
             </p>
             <div className="flex w-fit gap-8 my-8 justify-between">
-              <button className="mt-8 md:mt-6">
+              <button onClick={goDownYa} className="mt-8 md:mt-6">
                 <div className=" flex gap-5 justify-between items-center text-lg text-purple-900 bg-purple-200 border-8 border-white  hover:bg-purple-400 hover:text-gray-50 font-medium rounded-3xl text-sm px-4 lg:px-5 py-3 lg:py-4 sm:mr-2 lg:mr-0 ">
                   <FontAwesomeIcon icon={faCalendar} className="text-3xl" />{" "}
                   <h1 className="hidden md:block">Create a Schedule</h1>
